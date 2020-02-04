@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../pages/header %>
+
+
+
+    <div id="register-bg"></div>
+    <div class="overlay"></div>
+<div class="flex-container login-page">
+
+    <% if (typeof error !== 'undefined' && error && error !== 'none') { 
+        %> <div style="z-index: 6;" class="alert mt-3 alert-danger w-50 ml-auto mr-auto alert-dismissible fade show" role="alert">
+<%-error%>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+    <% } %>
+    <% if (typeof success !== 'undefined' && success && success !== 'none') { 
+        %> <div class="alert alert-success mt-3 w-50 ml-auto mr-auto alert-dismissible fade show" role="alert">
+<%-success%>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+    <% } %>
+
+        <section class="text-center form-login">
+                <form class="form-signin" action="/register" method="post" enctype="multipart/form-data">
+                            <h4><%= __("Register")%></h4>
+                    <input type="username" class='form-control' name='username' placeholder="<%=__("Username")%>" required autofocus>
+                    <input type="name" class='form-control' name='firstname' placeholder="<%=__("Firstname")%>" required autofocus>
+                    <input type="name" class='form-control' name='name' placeholder="<%=__("Name")%>" required autofocus>
+                    <input type="email"  class="form-control" name="email" placeholder="Email" required>
+                    <input type="password" class="form-control" name="password" placeholder="<%= __("Password")%>" required>
+
+                    <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="validatedCustomFile" name="pic" accept=".jpg, .jpeg, .png">
+                            <label class="custom-file-label" for="validatedCustomFile"><%= __("Choose file...")%></label>
+                          </div>
+
+
+                    <button class="btn btn-lg btn-block" type="submit"><%=__("Register")%></button>
+                   
+                </form>
+            </section>
+
+</div>
+
+    </body>
+    <% include ../others/footer%>
+
+</html>

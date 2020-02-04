@@ -1,0 +1,53 @@
+{
+  "name": "hypertube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coschmit/Hypertube.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coschmit/Hypertube/issues"
+  },
+  "homepage": "https://github.com/coschmit/Hypertube#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "axios": "^0.19.0",
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "formidable": "^1.2.1",
+    "htmlspecialchars": "^1.0.5",
+    "i18n-2": "^0.7.3",
+    "is-empty": "^1.2.0",
+    "is-reachable": "^4.0.0",
+    "kickass-torrent-api": "0.0.3",
+    "mysql": "^2.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.2",
+    "opensubtitles-api": "^5.0.1",
+    "parse-torrent": "^7.0.1",
+    "path": "^0.12.7",
+    "pump": "^3.0.0",
+    "random-key": "^0.3.2",
+    "range-parser": "^1.2.1",
+    "request": "^2.88.0",
+    "session-memory-store": "^1.0.0",
+    "srt-to-vtt": "^1.1.3",
+    "stream": "0.0.2",
+    "thepiratebay": "^1.4.7",
+    "torrent-stream": "^1.2.0",
+    "validator": "^12.1.0",
+    "wait-for-stuff": "^1.4.0"
+  }
+}

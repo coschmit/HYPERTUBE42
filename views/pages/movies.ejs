@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../pages/header %>
+
+</head>
+
+<body>
+
+    <% if (movie.torrents) { %>
+        <div class="quality">
+        <% movie.torrents.forEach(function(element) { %>
+            <form action="/movie" method='POST' class="quality_btn">
+                <input type='hidden' value='<%- a%>' id='movie' name='i'>
+                <input type="hidden"  value='<%= api %>' id="api" name="api">
+                <input type='submit' value="<%= element['quality'] %>" id='quality' name='quality'>
+            </form>
+    <% }) %></div><% } %>
+
+    <video class="videoplayer01" preload="auto" controls name="media" >
+        <source id="okay" src="<%-path%>" type="video/mp4">
+            <% if (pathSub[0] !== undefined) { %>
+                <track label="<%-pathSub[2]%>" kind="subtitles" srclang="<%-pathSub[2]%>" src="<%-pathSub[0]%>"   default>
+                <% } if (pathSub[1] !== undefined) { %>
+                    <track label="<%-pathSub[3]%>" kind="subtitles" srclang="<%-pathSub[3]%>" src="<%-pathSub[1]%>" >
+                        <% } %> 
+</video>
+
+<div class="infos">
+<img src="<%-movie.cover%>" class="moviecover">
+
+<div class="movie_infos">
+    <h2><%-movies.title%></h2>   
+    <br> 
+    <% if (movie.year) { %> <h5>Year : <b><%-movie.year%></b></h5><%}%>
+<% if (movie.rating) { %> <h6>Rating : <b><%-movie.rating%> <i class="far fa-star"></i></b></h6><%}%>
+<% if (movie.runtime) { %> <h6>Runtime : <b><%-movie.runtime%> min</b></h6> <% } %>
+<% if (movie.genres) { %> <h6>Genres : <b>
+    <% var i = 0; while (movie.genres[i]){ if (movie.genres[i+1]){ %>
+     <%-movie.genres[i] + ', '%>  
+    <%} else { %> 
+        <%-movie.genres[i]%>
+    <%} i++;
+    }%>
+    </b>
+    </h6> <% } %>
+
+<br>
+    <p><%-movie.synopsis%></p>
+</div> 
+</div>
+<hr>
+<div class="comments_section">
+    
+    <div class="comments">
+        <% if (typeof coms != 'undefined' && coms){ %>
+            <% var i = 0; while (coms[i]){%>
+                <div class='comment'><h5><%-coms[i].user_login%></h5><p><%-coms[i].comment%></p></div>
+                <%i++;} %>
+        <%}%>
+    </div>
+    <div class="send_area">
+        <input type="text" class="form-control text-center col-10" id="comment" placeholder="<%= __("Your comment...")%>">
+        <button type="submit" class="btn_send" value="" name="sub" id="send_btn"><i class="fas fa-upload"></i></button>
+        
+</div>
+</div>
+
+
+    <% include ../others/footer %>
+<script>
+  
+$('.send_area').keypress(function(e) {
+		      if(e.keyCode==13)
+		      {
+		      	$('.btn_send').click();
+		      	this.value='';
+		      }
+		    });
+
+            function fokXSS(text) {
+         var map = {
+           '&': '&amp;',
+           '<': '&lt;',
+           '>': '&gt;',
+           '"': '&quot;',
+           "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+function insereComment(comment){
+    comment = fokXSS(comment);
+    var div = "<div class='comment'><h5><%-profile.username%></h5><p>"+comment+"</p></div>"
+    $(".comments").append(div)
+    document.getElementById("comment").value = '';
+}
+
+$('#send_btn').click(function(){
+    var movie_id = <% if (typeof id != 'undefined'){%><%-id%><%}else{%>'0'<%}%>
+    var comment = document.getElementById("comment").value;
+    insereComment(comment);
+    $.post("/comment",{
+        movie_id: movie_id,
+        comment: comment
+    },
+    function(data,status){
+        alert("\nStatus: "+status);
+    })
+})
+
+</script>
+
+</body>
+
+</html>

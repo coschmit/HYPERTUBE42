@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../pages/header %>
+
+</head>
+
+<body>
+
+<div class="flex-container">
+    <% if (typeof error !== 'undefined' && error && error !== 'none')  { %>
+        <div class="alert alert-danger w-50 text-center" style="margin-top:1em;">
+              <strong><%= __("Error!") %></strong> <%- __(error) %>
+        </div>
+    <% } %>
+</div>
+
+</body>
+
+<% include ../others/footer %>
+
+
+</html>

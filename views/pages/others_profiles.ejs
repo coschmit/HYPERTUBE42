@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../pages/header %>
+
+</head>
+
+<body>
+
+    <div class="border_other col-sm-12 col-md-10 ">
+
+        <div class="col-sm-12 col-md-10 m-auto">
+            <div class="row text-center justify-content-center">
+
+                <div class="col-3 ">
+                    <p><%=__("Username")%></p>
+                </div>
+                <div class="col-3">
+                    <p><%=__("Firstname")%></p>
+                </div>
+                <div class="col-3">
+                    <p><%=__("Name")%></p>
+                </div>
+                <div class="col-3">
+                    <p><%=__("Picture")%></p>
+                </div>
+            </div>
+        </div>
+        <% var i = 0; while(users[i]){ %>
+            <br>
+            <div class="col-sm-12 col-md-10 border-profile">
+                
+                <div class="row text-center justify-content-center">
+                    <div class="col-3 ">
+                        <p><%-users[i].username%></p>
+                    </div>
+                    <div class="col-3">
+                        <p><%-users[i].firstname%></p>
+                    </div>
+                    <div class="col-3">
+                        <p><%-users[i].name%></p>
+                    </div>
+                    <div class="col-3">
+                        <img class="rounded-pic p-1" src="<%-users[i].img%>">
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <img src="<%-users[i].img%>"> -->
+        
+            <%i++}%>
+        
+    </div>
+    
+</body>
+
+<% include ../others/footer %>
+
+
+</html>

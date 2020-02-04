@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../pages/header %>
+
+    <div id="login-bg"></div>
+    <div class="overlay"></div>
+<div class="flex-container login-page">
+
+
+    <% if (typeof error !== 'undefined' && error && error !== 'none') { 
+        %> <div style="z-index: 6;" class="alert mt-3 alert-danger w-50 ml-auto mr-auto alert-dismissible fade show" role="alert">
+<%-error%>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+    <% } %>
+    <% if (typeof success !== 'undefined' && success && success !== 'none') { 
+        %> <div class="alert alert-success mt-3 w-50 ml-auto mr-auto alert-dismissible fade show" role="alert">
+<%-success%>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+    <% } %>
+    
+        <section class="text-center form-login">
+                <form class="form-signin" action="/login" method="post">
+                            <h4><%= __("Sign In")%></h4>
+                    <input type="username" class='form-control' name='username' placeholder="<%=__("Username")%>" required autofocus>
+                    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="<%=__("Password")%>" required>
+                   
+                    <button class="btn btn-lg btn-block" type="submit"><%= __("Sign In")%></button>
+                    <p class="txt-register float-left"><a href="/forget_password"><%= __("Forget Password")%></a></p>
+            
+                    <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=c75f064c1f2cf2694e0a"><%= __("Log In with Github")%></a>
+                    <a href="https://api.intra.42.fr/oauth/authorize?client_id=80798f26545489ef220b2a45524d607b0c920a174d5dff5398d18c8a25e416bf&redirect_uri=http%3A%2F%2Flocalhost%3A8888%2Foauth42&response_type=code"><%=__("Log In with ")%><span>42</span></a>
+                </form>
+            </section>
+
+</div>
+   
+
+    </body>
+    <% include ../others/footer%>
+
+    
+</html>

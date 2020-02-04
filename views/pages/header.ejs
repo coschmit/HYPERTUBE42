@@ -1,0 +1,133 @@
+<title>HYPERTUBE</title>
+<link rel="shortcut icon" type="image/x-icon" href="/img/player_logo.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-\\\\\\">
+    <a class="navbar-brand" href="/">HYPERTUBE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+        <% if (typeof profile != 'undefined'){%>
+
+      <form class="form-inline my-2 my-lg-0" action="/index" method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="<%= __("Search..")  %>" name="query">
+        <button class="btn nav-btn yts-btn" type="submit" value="yts" title="YTS" name="srch"><i>YTS</i></button>
+        <button class="btn nav-btn tpb-btn" type="submit" value="tpb" title="The Pirate Bay"
+          name="srch"><i>TPB</i></button>
+        <button class="btn nav-btn kat-btn" type="submit" value="kat" title="Kickass Torrent"
+          name="srch"><i>KAT</i></button>
+      </form>
+      <% } %>
+      <ul class="navbar-nav">
+        <% if (typeof profile != 'undefined'){%>
+        <li class="nav-item d-inline-flex">
+        <a href="/account">
+            <img onclick="" class="rounded-pic" src="<%= profile.img%>">
+        </a>
+          <!-- <a class="nav-link" href="/account">Profile <span class="sr-only">(current)</span></a> -->
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-item nav-link" href="/others_profiles"><%=__("Others Profiles")%></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i><%=__("Logout")%></a>
+        </li>
+        <% } %>
+        <% if (typeof profile == 'undefined'){%>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="/login"><%= __("Sign In")%><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="/register"><%= __("Register")%></a>
+        </li>
+        <!-- <div class="">
+          <input type="image" value="fr" class="flag flag-fr"  src="/img/france.png">
+        <input type="image" value="en" class="flag flag-uk" src="/img/united-kingdom.png">
+            </div> -->
+        <% }%>
+
+        <% if (typeof profile != 'undefined'){%>
+          <li class="nav-item">
+        <form class="flex_row" action="/index" method="post">
+          <li class="nav-item menudrop">
+            <a class="nav-link" href="#">
+              <i class="fas fa-bars"></i>
+              GENRES
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item"><a href="/index/genre/action">Action</a></li>
+              <li class="submenu-item"><a href="/index/genreadventure"><%=__("Adventure")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/animation">Animation</a></li>
+              <li class="submenu-item"><a href="/index/genre/comedy"><%=__("Comedy")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Crime">Crime</a></li>
+              <li class="submenu-item"><a href="/index/genre/Documentary"><%=__("Documentary")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Drama"><%=__("Drama")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Family"><%=__("Family")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Fantasy"><%=__("Fantasy")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/History"><%=__("History")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Horror"><%=__("Horror")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Musical"><%=__("Musical")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Mystery"><%=__("Mystery")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Romance"><%=__("Romance")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Sci-Fi"><%=__("Sci-Fi")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Sport">Sport</a></li>
+              <li class="submenu-item"><a href="/index/genre/Superhero"><%=__("Superhero")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Thriller"><%=__("Thriller")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/War"><%=__("War")%></a></li>
+              <li class="submenu-item"><a href="/index/genre/Western"><%=__("Western")%></a></li>
+              
+            </ul>
+          </li>
+
+          <% if (typeof api != 'undefined' && api == 1){%>
+
+          <li class="nav-item menudrop">
+            <a class="nav-link" href="#">
+              <i class="fas fa-bars"></i>
+              SORT
+            </a>
+            <ul class="submenu">
+              <li class="submenu-item"><a href="/index/filter/title"><%=__("Title")%></a></li>
+              <li class="submenu-item"><a href="/index/filter/year"><%=__("Year")%></a></li>
+              <li class="submenu-item"><a href="/index/filter/rating"><%=__("Rating")%></a></li>
+              <li class="submenu-item"><a href="/index/filter/recent"><%=__("Recent")%></a></li>
+
+
+              </ul>
+          </li>
+
+          <%}%>
+        </form>
+        </li>
+        <% if (typeof indxx != 'undefined'){%>
+        <li class="nav-item">
+        <div class="language-switcher">
+            <% if (profile.language == 'fr') { %> 
+          <input type="image" class="flag flag-fr" name="fr" src="/img/france.png">
+          <input type="image" class="flag flag-uk" value="en" src="/img/united-kingdom.png">
+          <% }else { %>
+            <input type="image" value="en" class="flag flag-uk" src="/img/united-kingdom.png">
+            <input type="image" value="fr" class="flag flag-fr"  src="/img/france.png">
+            <% } %>
+        </div>
+        </li>
+        <%} } %>
+      </ul>
+
+    </div>
+  </nav>
+
+

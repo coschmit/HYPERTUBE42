@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <% include ../pages/header %>
+
+</head>
+
+<body>
+        <br>
+        
+        <div class="container">
+                <% if(typeof count !== 'undefined'){ %>
+
+                <div class="alert alert-success w-50 alert-dismissible fade show" role="alert">
+                        <%- count%> résultats trouvés
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <%}%>
+
+        </div>
+        <div class="container">
+                <div id="film-container" class="row">
+                        <% var i = 0; while (movies[i]) {%>
+
+                        <form action="/movie" method="POST">
+                                <input type="hidden" value='<%=movies[i].title%>' id='<%-i%>' name="i">
+
+                                <div data-tilt class="film-card <% if (movies[i].vue) { %> viewmovie <% }%>" >
+                                        <input type="image"
+                                                class="film-cover <% if(typeof yts != 'undefined'){%>h-100<%}%>" src="<%- movies[i].cover %>">
+                                        <div class="card-body">
+
+                                                <h5 class="card-title"><%- movies[i].title%></h5>
+                                                <p class="card-text"><%- movies[i].synopsis%></p>
+                                        </div>
+                                </div>
+                        </form>
+                        <%i++ }%>
+
+                </div>
+        </div>
+
+</body>
+
+<% include ../others/footer %>
+
+<script>
+        $('.flag:first-child').click(function () {
+                if ($(".flag:last-child").css("display") == 'none')
+                        $(".flag:last-child").css("display", "inline-block");
+                else
+                        $(".flag:last-child").css("display", "none");
+        })
+
+        $('.flag:last-child').click(function () {
+                $.ajax({
+                        type: "POST",
+                        url: "/index",
+                        data: {
+                                lang: $('.flag:last-child').val()
+                        }
+                });
+                location.reload()
+
+
+        })
+
+
+
+
+
+
+        var pages = 2;
+        var scrolldone = 1;
+        var h = 1;
+        var sort = '<%-sort%>';
+
+        searchnav = '<%-searchnav%>';
+        if (searchnav == 0){
+        $(window).scroll(function () {
+                var scrollPercent = Math.round(($(window).scrollTop()) / ($(document).height() - $(window).height()) * 100);
+                console.log("le genre est = " + '<%-genres%>')
+                if (scrollPercent >= 100 && scrolldone == 1) {
+                        scrolldone = 0;
+                        $.ajax({
+                                url: '/index2',
+                                type: 'POST',
+                                data: {
+                                        number: pages, sort: sort, srch: '<%-search%>', genres: '<%-genres%>', filtrerating: '<%-rating%>', quality: '<%-qualityk%>'
+                                },
+                                success: function (response) {
+                                        var i = 0;
+
+                                        if (pages < 30 && response && response.data && response.data.movies) {
+                                                console.log("c carré")
+                                                console.log(response.data.movies[0].title)
+                                                while (response.data.movies[i]) {
+                                                        var total = '';
+                                                        total += '<form action="/movie" method="POST">'
+                                                        total += '<input type="hidden" value="' + response.data.movies[i].title + '" id="i" name="i">'
+                                                        total += '<div data-tilt class="film-card tilte' + h + '" style="">'
+                                                        total += '<input type="image" src=' + response.data.movies[i].cover + ' class="film cover h-100">'
+                                                        total += '<div class="card-body">'
+                                                        total += '<h5 class="card-title">' + response.data.movies[i].title + '</h5>'
+                                                        total += '<p class="card-text">' + response.data.movies[i].synopsis + '</p>'
+                                                        total += '</div>'
+                                                        total += '</div>'
+                                                        total += '</form>'
+                                                        $('#film-container').append(total);
+                                                        total = '';
+                                                        i++;
+
+
+                                                } 
+                                                pages++;
+                                                $('.tilte' + h).tilt({
+                                                        glare: true,
+                                                        maxGlare: .5,
+                                                        disableAxis: 'x',
+                                                        maxTilt: 8
+                                                })
+                                                scrolldone = 1;
+                                                h++;
+                                        }
+
+                                }
+                        })
+                }
+        })
+}
+
+        // $('.bg-radom').tilt({
+        //         glare: true,
+        //         maxGlare: .5,
+        //         disableAxis: 'x',
+        //         maxTilt: 8
+        // })
+
+        $('.film-card').tilt({
+                glare: true,
+                maxGlare: .5,
+                disableAxis: 'x',
+                maxTilt: 8
+        })
+</script>
+
+</html>
