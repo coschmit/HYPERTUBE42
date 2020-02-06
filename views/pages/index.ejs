@@ -77,9 +77,10 @@
         var scrolldone = 1;
         var h = 1;
         var sort = '<%-sort%>';
-
+        var api = '<%-api%>'
         searchnav = '<%-searchnav%>';
-        if (searchnav == 0){
+        console.log(api)
+        if (searchnav == 0 && api != 2 && api != 4){
         $(window).scroll(function () {
                 var scrollPercent = Math.round(($(window).scrollTop()) / ($(document).height() - $(window).height()) * 100);
                 console.log("le genre est = " + '<%-genres%>')

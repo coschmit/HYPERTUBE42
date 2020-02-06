@@ -1,5 +1,5 @@
-conn.query('CREATE DATABASE IF NOT EXISTS `megatube`', function (err) { if (err) throw err })
-conn.query('USE `megatube`', function (err) { if (err) throw err })
+conn.query('CREATE DATABASE IF NOT EXISTS `hypertube`', function (err) { if (err) throw err })
+conn.query('USE `hypertube`', function (err) { if (err) throw err })
 var users = `CREATE TABLE IF NOT EXISTS users ( \
     id INT AUTO_INCREMENT PRIMARY KEY, \
     username VARCHAR(255), \

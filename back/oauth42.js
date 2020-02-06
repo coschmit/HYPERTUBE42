@@ -51,7 +51,7 @@ request.post({
                 req.session.profile.email = body.email
                 req.session.profile.img = body.image_url
                 req.session.profile.api = '3';
-                //req.session.first = '1';
+                req.session.first = '1';
                 console.log(body.email)
                 res.redirect('/index')
             }
