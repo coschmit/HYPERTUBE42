@@ -5,8 +5,7 @@ res.redirect('/')
 else if  (!req.body || (!req.body.username && !req.body.password))
 res.render('pages/login')
 else if (!req.body.username || !req.body.password){
-    res.render('pages/login')
-    console.log("empty field!")
+    res.render('pages/login',{error: "Empty field!"})
 }
 else {
     var username = eschtml(req.body.username)

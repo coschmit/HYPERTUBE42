@@ -178,8 +178,7 @@ app.get('/', function (req, res) {
     .get('/others_profiles', function (req, res) {
         conn.query('SELECT * FROM users WHERE (id <> ?) ORDER BY id DESC', [req.session.profile.id, req.session.profile.api],
        function (err, result) {
-           console.log(req.session.profile.id)
-    res.render('pages/others_profiles',{profile: req.session.profile, users: result})})
+        res.render('pages/others_profiles',{profile: req.session.profile, users: result})})
     })
 
     .get('/forget_password', function (req, res) {
@@ -191,7 +190,6 @@ app.get('/', function (req, res) {
         }
     })
     .post('/forget_password',function(req, res){
-        console.log("hum")
         eval(fs.readFileSync(__dirname + "/back/forget_password.js" ) + '')
     })
     .post('/comment',function(req,res){

@@ -2,7 +2,6 @@ if (req.params.hash !== undefined)
 {
     
     hash = req.params.hash;
-    console.log(hash)
 	const getEngineFile = function(engine) {
 		return new Promise ((resolve, reject) => {
 			engine.on('ready', async() => {
@@ -52,7 +51,6 @@ if (req.params.hash !== undefined)
 								.on('error', (err) => {
 									;
                                 })
-                                console.log("NORMALOMENT C CONVERT")
 			}
 			res.setHeader('Content-Length', file.length);
 			if (convert != null)
@@ -76,7 +74,6 @@ if (req.params.hash !== undefined)
 								.on('error', (err) => {
 									;
                                 })
-                                console.log("OK C CONVERT")
 			}
 			res.statusCode = 206;
 			res.setHeader('Content-Length', 1 + ranges.end - ranges.start);

@@ -3,7 +3,6 @@ var fr = 0;
 
 
 function getQuality(torrents, quality) {
-	console.log("**getquality**")
 	let a = 0;
 	if (!empty(quality) && !empty(torrents))
 	{
@@ -75,14 +74,12 @@ else {
 	a = eschtml(req.body.i)
 
     req.session.movies.forEach(elem => {
-		console.log(elem.title)
         if (elem.title == eschtml(req.body.i)){
 			movies = elem;
-			console.log("elem = "+elem.title)
 			}
     })
     if (empty(movies)){
-		console.log("C'est vide sheguey")
+		console.log("Retry in few moment")
 
 		res.redirect('/')	
 	}
@@ -119,8 +116,6 @@ else {
                     hash = hash2[0];
                 }
 			}
-          console.log("hash = "+hash)
-
 		}
 		
 		
@@ -198,7 +193,6 @@ else {
 							pathSub[3] = 'fr'
 						}
 					}
-					console.log("PathSub[0] = "+pathSub[0]+"\nPathSub3 = "[pathSub[3]])
 
 			
 				conn.query('SELECT * FROM movies WHERE hash = ?', [hash], (err, rows) => {
@@ -210,7 +204,6 @@ else {
 						fetch('https://yts.lt/api/v2/movie_suggestions.json?movie_id='+id)
 							.then(res => { return res.json(); })
 							.then(json => { 
-								console.log("******************")
 
 							res.render('pages/movies.ejs', {profile: req.session.profile, title: title, movie: movies, path: path1, hash: hash, suggestions: json.data.movies, a: a, pathSub: pathSub})
 							movies = [];
@@ -235,7 +228,6 @@ else {
 								fetch('https://yts.lt/api/v2/movie_suggestions.json?movie_id='+id)
 								.then(res => { return res.json(); })
 								.then(json => { 
-									console.log("******************")
 
 									res.render('pages/movies.ejs', {profile: req.session.profile, title: title, movie: movies, path: path1, hash: hash, suggestions: json.data.movies, api, id: rows[0].id, coms:coms, a: a, pathSub: pathSub})
 									movies = [];
@@ -254,5 +246,5 @@ else {
 		}, 1500);
 
 
-    }/////
+    }
 }

@@ -1,6 +1,5 @@
 
 
-console.log(req.body)
 var comment = req.body.comment;
 var movie_id = req.body.movie_id;
 sql = "INSERT INTO comments (`user_id`,`user_login`,`movie_id`,`comment`) VALUES(?,?,?,?)"

@@ -8,7 +8,6 @@ function adduser (body) {
         }
     })
 }
-console.log("CONNECTION ...")
 var headers = {
     'Accept': 'application/json',
     'User-Agent': 'Super Agent/0.0.1',
@@ -37,8 +36,6 @@ request(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 var body = JSON.parse(body)
                 req.session.profile = new Array
-                console.log(body)
-
                 req.session.profile.username = body.login;
                 req.session.profile.img = body.avatar_url;
                 req.session.profile.api = '2';

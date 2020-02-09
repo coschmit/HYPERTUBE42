@@ -1,8 +1,3 @@
-console.log("req body2 = ")
-console.log(req.body)
-console.log("req param2 = ")
-console.log(req.params)
-
 function checkforvues(movies, query, api, callback) {
 	conn.query('SELECT * FROM vues WHERE user_id = ?', [req.session.profile.id], (err, vueresult) => {
 		if (err) { res.redirect('/error/SQL vue problem in search.js 1 ' + err); }
@@ -104,10 +99,8 @@ async function yts(query, number) {
 		var quality = eschtml(req.body.quality);
 	if (empty(query) || query === "undefined") {
 		try {
-			console.log("bon le sort est = " + sort)	
 			if (!sort) { var sort = "like_count" };
 			var requete = 'https://yts.am/api/v2/list_movies.json?sort_by=' + sort + '&limit=10&page=' + number;
-			console.log(sort)
 			if (genre != "All")
 				var requete = requete + '&genre=' + genre;
 			if (minimumrating)

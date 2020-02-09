@@ -1,6 +1,5 @@
 
 
-console.log("Salut  c moi")
 var form = new formidable.IncomingForm();
 form.parse(req, function (err, field, files) {
     if (err) { res.redirect('/error/form.parse error in register.js ' + err); }
@@ -10,11 +9,11 @@ form.parse(req, function (err, field, files) {
         else if (!field || (!field.username && !field.name && !field.firstname && !field.email && !field.password && !files.pic))
             res.render('pages/register')
         else if (!field.username || !field.name || !field.firstname || !field.email || !field.password || !files.pic)
-            console.log('You must fill in every field to create an account')
+            res.render('pages/register',{error: "You must fill in every field to create an account"})
         else if (files.pic.type !== 'image/png' && files.pic.type !== 'image/jpeg' && files.pic.type !== 'image/jpg')
-            console.log('Only jpeg, jpg, and png images aloud')
+            res.render('pages/register',{error: "Only jpeg, jpg, and png images aloud"})
         else if (files.pic.size > 5000000)
-            console.log('Your image is too big')
+            res.render('pages/register',{error: "Your image is too big"})
         else {
             var username = eschtml(field.username)
             var firstname = eschtml(field.firstname)

@@ -1,10 +1,7 @@
-console.log(req.params)
-
 function language_change(val){
     var sql = 'UPDATE users SET language = ? WHERE id = ?'
     conn.query(sql, [val, req.session.profile.id], function (err) { if (err) res.redirect('/error/SQL error ' + err); })
    req.session.profile.language = val;
-  console.log("new req session language = "+req.session.profile.language)    
 }
 if (req.body.lang != undefined){
 	language_change(req.body.lang )
@@ -56,15 +53,10 @@ function render(movies, query, api) {
 		req.session.movies = movies;
 		req.session.api = api;
 	}
-	console.log("******")
-	console.log("req body 1")
 
-console.log(req.body)
-console.log("******")
 
 	checkforvues(movies, query, api, (cmovies) => {
 		
-		console.log("*******")
 		if (req.params.genres){
 			req.session.first = 0;
 		req.session.movies = movies;
@@ -173,7 +165,6 @@ async function thepiratebay(query) {
 			var result = await PirateBay.topTorrents(200)
 		}
 		else {
-			console.log("j'ai dit 2");
 			var result = await PirateBay.search(query, {
 				category: 'video',
 				orderBy: 'name',
@@ -182,8 +173,6 @@ async function thepiratebay(query) {
 			})
 		}
 		const piratemovies = result.map(elem => {
-			console.log("********")
-
 			elem.name = elem.name.replace(/\./g, ' ');
 			return ({
 				id: elem.id,
@@ -262,9 +251,3 @@ switch (req.body.srch) {
 
 
 }
-
-/*
-console.log("Well done you are loggued!")
-console.log(req.session.profile)
-res.render('pages/index',{profile: req.session.profile})
-*/

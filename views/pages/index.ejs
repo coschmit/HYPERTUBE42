@@ -79,11 +79,9 @@
         var sort = '<%-sort%>';
         var api = '<%-api%>'
         searchnav = '<%-searchnav%>';
-        console.log(api)
         if (searchnav == 0 && api != 2 && api != 4){
         $(window).scroll(function () {
                 var scrollPercent = Math.round(($(window).scrollTop()) / ($(document).height() - $(window).height()) * 100);
-                console.log("le genre est = " + '<%-genres%>')
                 if (scrollPercent >= 100 && scrolldone == 1) {
                         scrolldone = 0;
                         $.ajax({
@@ -96,8 +94,6 @@
                                         var i = 0;
 
                                         if (pages < 30 && response && response.data && response.data.movies) {
-                                                console.log("c carré")
-                                                console.log(response.data.movies[0].title)
                                                 while (response.data.movies[i]) {
                                                         var total = '';
                                                         total += '<form action="/movie" method="POST">'

@@ -9,7 +9,6 @@ function adduser (body) {
         }
     })
 }
-console.log("OKTEST")
 
 request.post({
     url: 'https://api.intra.42.fr/oauth/token',
@@ -22,7 +21,6 @@ request.post({
         redirect_uri: 'http://localhost:8888/oauth42'
     }
 }, function(error, response, body){
-    console.log("TEST2")
 
     if (error)
         console.log("error1");
@@ -30,7 +28,6 @@ request.post({
     console.log("error2");
     else
     {
-        console.log("ouiiii")
         token = response.body.access_token;
         request.get({
             url: 'https://api.intra.42.fr/v2/me?access_token=' + token,
@@ -42,7 +39,6 @@ request.post({
                 res.redirect('error/ oauth42 request error ' + response.statusCode + " : " + response.body.error);
             else
             {
-                console.log("ouiiiiiii")
                 adduser(body)
                 req.session.profile = new Array;
                 req.session.profile.username = body.login
@@ -52,7 +48,6 @@ request.post({
                 req.session.profile.img = body.image_url
                 req.session.profile.api = '3';
                 req.session.first = '1';
-                console.log(body.email)
                 res.redirect('/index')
             }
         })

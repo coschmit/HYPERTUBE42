@@ -1,6 +1,4 @@
 email = eschtml(req.body.email);
-console.log(email);
-console.log("okok");
 sql = "SELECT * FROM users WHERE email = ?";
 conn.query(sql,[email],function(error,result){
     if (error) throw error
