@@ -12,9 +12,9 @@
         <div class="quality">
         <% movie.torrents.forEach(function(element) { %>
             <form action="/movie" method='POST' class="quality_btn">
-                <input type='hidden' value='<%- a%>' id='movie' name='i'>
-                <input type="hidden"  value='<%= api %>' id="api" name="api">
-                <input type='submit' value="<%= element['quality'] %>" id='quality' name='quality'>
+                <input type='hidden' value='<%- a%>' name='i'>
+                <input type="hidden"  value='<%= api %>' name="api">
+                <input type='submit' value="<%= element['quality'] %>" name='quality'>
             </form>
     <% }) %></div><% } %>
 

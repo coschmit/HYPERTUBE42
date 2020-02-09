@@ -55,5 +55,7 @@
 	"No movies found": "No movies found",
 	" E-mail is not valid": " E-mail is not valid",
 	"ok": "ok",
-	"YTS catchTypeError: Cannot read property &#039;length&#039; of undefined": "YTS catchTypeError: Cannot read property &#039;length&#039; of undefined"
+	"YTS catchTypeError: Cannot read property &#039;length&#039; of undefined": "YTS catchTypeError: Cannot read property &#039;length&#039; of undefined",
+	"Success!": "Success!",
+	"Your profile was successfully updated": "Your profile was successfully updated"
 }
