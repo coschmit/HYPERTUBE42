@@ -116,7 +116,7 @@ async function yts(query, number) {
 		var ytsquery = encodeURI(query)
 		try {
 			if (!sort) { var sort = "title" };
-			var requete = 'https://yts.lt/api/v2/list_movies.json?query_term=' + ytsquery + '&sort_by=' + sort + '&limit=10&page=' + number;
+			var requete = 'https://yts.mx/api/v2/list_movies.json?query_term=' + ytsquery + '&sort_by=' + sort + '&limit=10&page=' + number;
 			if (genre != "All")
 				var requete = requete + '&genre=' + genre;
 			if (minimumrating)
@@ -136,7 +136,7 @@ if (req.body.srch == undefined)
 	req.body.srch = 'yts';
 if (req.body.sort == undefined && req.body.genres == undefined && req.body.quality == undefined && req.body.filtrerating == undefined)
 	req.body.sort = 1;
-isReachable('https://yts.lt/api/v2/list_movies.json', { timeout: 2000 }).then(r => {
+isReachable('https://yts.mx/api/v2/list_movies.json', { timeout: 2000 }).then(r => {
 	if (r == true)
 		yts(query, number);
 	else

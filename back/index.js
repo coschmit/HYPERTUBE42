@@ -129,7 +129,7 @@ async function yts(query) {
 	if (empty(query) || query === "undefined") {
 		try {
 			if (!sort) { var sort = "like_count" };
-			var requete = 'https://yts.lt/api/v2/list_movies.json?sort_by=' + sort + '&limit=10&page=' + number;
+			var requete = 'https://yts.mx/api/v2/list_movies.json?sort_by=' + sort + '&limit=10&page=' + number;
 			if (genre != "All")
 				var requete = requete + '&genre=' + genre;
 			if (minimumrating)
@@ -145,7 +145,7 @@ async function yts(query) {
 		var ytsquery = encodeURI(query)
 		try {
 			if (!sort) { var sort = "title" };
-			var requete = 'https://yts.lt/api/v2/list_movies.json?query_term=' + ytsquery + '&sort_by=' + sort + '&page=' + number;
+			var requete = 'https://yts.mx/api/v2/list_movies.json?query_term=' + ytsquery + '&sort_by=' + sort + '&page=' + number;
 			if (genre != "All")
 				var requete = requete + '&genre=' + genre;
 			if (minimumrating)
@@ -233,7 +233,7 @@ switch (req.body.srch) {
 		thepiratebay(query);
 		break;
 	case 'yts':
-		isReachable('https://yts.lt/api/v2/list_movies.json', { timeout: 3000 }).then(r => {
+		isReachable('https://yts.mx/api/v2/list_movies.json', { timeout: 3000 }).then(r => {
 			if (r == true)
 				yts(query, number);
 			else
@@ -241,7 +241,7 @@ switch (req.body.srch) {
 		})
 		break;
 	default:
-		isReachable('https://yts.lt/api/v2/list_movies.json', { timeout: 3000 }).then(r => {
+		isReachable('https://yts.mx/api/v2/list_movies.json', { timeout: 3000 }).then(r => {
 			if (r == true)
 				yts(query);
 			else
