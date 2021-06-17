@@ -28,4 +28,4 @@ npm start
 ![Player](https://github.com/coschmit/HYPERTUBE42/blob/master/README_img/player_page.png)
 
 ### Mobile Design
-![Mobile](https://github.com/coschmit/HYPERTUBE42/blob/master/README_img/search_page_mobile.png)
+<img src="https://github.com/coschmit/HYPERTUBE42/blob/master/README_img/search_page_mobile.png" width="300"/>
