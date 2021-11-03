@@ -47,7 +47,7 @@
     "stream": "0.0.2",
     "thepiratebay": "^1.4.7",
     "torrent-stream": "^1.2.0",
-    "validator": "^12.1.0",
+    "validator": "^13.7.0",
     "wait-for-stuff": "^1.4.0"
   }
 }
